@@ -50,3 +50,19 @@ coherence_model = CoherenceModel(model=model_5_2, texts=tweets_lemmatized,
 coherence_lda_model_base = coherence_model.get_coherence()
 print('\nCoherence Score: ', coherence_lda_model_base)
 
+#Defining a function to loop over number of topics to be used to find an optimal number of tipics
+#Compute c_v coherence for various number of topics
+def compute_coherence_values(dictionary, corpus, texts, limit, start=2, step=3):
+    coherence_values_topic = []
+    model_list_topic = []
+    for num_topics in range(start, limit, step):
+        model = LdaMulticore(corpus=corpus, num_topics=num_topics, id2word=id2word)
+        model_list_topic.append(model)
+        coherencemodel = CoherenceModel(model=model, texts=texts, dictionary=dictionary, coherence='c_v')
+        coherence_values_topic.append(coherencemodel.get_coherence())
+    return model_list_topic, coherence_values_topic
+
+model_list_topic, coherence_values_topic = compute_coherence_values(dictionary=id2word,
+                                                        corpus=corpus_tweets,
+                                                        texts=tweets_lemmatized,
+                                                        start=2, limit=200, step=6)
