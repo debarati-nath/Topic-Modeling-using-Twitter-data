@@ -5,7 +5,7 @@
 Twitter data were downloading using API. The code is given in the repository named 'trending_tweets'. Twitter data were saved in google drive (Folder name - tweets_raw) using search words and hashtags.
 
 #Processing tweets
-Remove links, hashtags, mentions, punctuations, and stopwords. Tokenization and lemmitization are also applied. Various process are provided. 
+Remove links, hashtags, mentions, punctuations, and stopwords. Tokenization and lemmatization are also applied. Various process are provided. 
 
 #Human readable format of corpus
 
